@@ -1,27 +1,26 @@
-
-import {
-  RouterProvider,
-  createBrowserRouter
-} from "react-router-dom"
-import Landing from "./pages/landing"
+import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import Landing from "./pages/landing";
 import Login from "./pages/login";
+import { QueryClient, QueryClientProvider } from "react-query";
 
+const queryClient = new QueryClient();
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Landing />
+    element: <Landing />,
   },
   {
     path: "login",
-    element: <Login/>
-  }
-])
-
+    element: <Login />,
+  },
+]);
 
 function App() {
   return (
-    <RouterProvider router={router}/>
+    <QueryClientProvider client={queryClient}>
+      <RouterProvider router={router} />
+    </QueryClientProvider>
   );
 }
 
